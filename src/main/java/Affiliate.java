@@ -6,14 +6,16 @@ public class Affiliate
     private int id;
     private String name;
     private AffiliateType type;
-    private long balance;
+    private double balance;
+    private double cumulativeTotal;
 
-    public Affiliate(int id, String name, AffiliateType type, long balance)
+    public Affiliate(int id, String name)
     {
         this.id = id;
         this.name = name;
-        this.type = type;
-        this.balance = balance;
+        this.type = AffiliateType.BRONZE;
+        this.balance = 0;
+        this.cumulativeTotal = 0;
     }
 
     public int getId()
@@ -46,13 +48,23 @@ public class Affiliate
         this.type = type;
     }
 
-    public long getBalance()
+    public double getBalance()
     {
         return balance;
     }
 
-    public void setBalance(long balance)
+    public void setBalance(double balance)
     {
         this.balance = balance;
+    }
+
+    public double getCumulativeTotal()
+    {
+        return cumulativeTotal;
+    }
+
+    public void setCumulativeTotal(double cumulativeTotal)
+    {
+        this.cumulativeTotal = cumulativeTotal;
     }
 }

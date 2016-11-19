@@ -1,9 +1,10 @@
+import com.sun.org.apache.xpath.internal.compiler.Keywords;
+
 /**
  * Created by Matthew on 19-Nov-16.
  */
 public class AdDescription
 {
-    //Keywords?
-
+    private Keywords keywords;
     private AdFormat format;
 }
