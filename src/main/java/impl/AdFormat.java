@@ -1,4 +1,7 @@
+package impl;
+
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
+import enums.MediaType;
 
 import java.awt.*;
 

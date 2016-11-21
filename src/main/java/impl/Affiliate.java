@@ -1,3 +1,7 @@
+package impl;
+
+import enums.AffiliateType;
+
 /**
  * Created by Matthew on 19-Nov-16.
  */

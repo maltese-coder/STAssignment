@@ -1,3 +1,8 @@
+package interfaces;
+
+import impl.AdDescription;
+import impl.Advert;
+
 /**
  * Created by Matthew on 19-Nov-16.
  */

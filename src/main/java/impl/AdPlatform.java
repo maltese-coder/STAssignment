@@ -1,3 +1,8 @@
+package impl;
+
+import enums.AffiliateType;
+import interfaces.AdProvider;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +12,7 @@ import java.util.List;
  */
 public class AdPlatform implements AdProvider
 {
-    //private List<Affiliate> affiliatesMap = new ArrayList<Affiliate>();
+    //private List<impl.Affiliate> affiliatesMap = new ArrayList<impl.Affiliate>();
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
     private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
 
@@ -57,7 +62,7 @@ public class AdPlatform implements AdProvider
         return commission;
     }
 
-    // return boolean or Advert??
+    // return boolean or impl.Advert??
     public Advert serveAdvert(AdDescription adDescription)
     {
 
