@@ -76,8 +76,9 @@ public class AdPlatform implements AdProvider
 
         //increase pay by 50c
         affiliate.setBalance(affiliate.getBalance()+ 0.5);
+        affiliate.setCumulativeTotal(affiliate.getCumulativeTotal() +0.5);
 
-        double balance = affiliate.getBalance();
+        double balance = affiliate.getCumulativeTotal();
 
         //check for promotion
         if(balance == 50 && (affiliate.getType() == AffiliateType.BRONZE))
