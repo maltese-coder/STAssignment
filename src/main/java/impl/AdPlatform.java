@@ -16,13 +16,11 @@ public class AdPlatform implements iAdProvider
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
     private List<iAdProvider> adProvidersList = new ArrayList<iAdProvider>();
 
-
-
     public boolean registerAffiliate(Affiliate affiliate)
     {
         affiliatesMap.put(affiliate.getId(),affiliate);
-        return true;
 
+        return true;
     }
 
 
@@ -41,7 +39,7 @@ public class AdPlatform implements iAdProvider
         return true;
     }
 
-    private double getCommission(Affiliate affiliate)
+    public double getCommission(Affiliate affiliate)
     {
         AffiliateType tempType = affiliate.getType();
         double commission;
@@ -62,11 +60,8 @@ public class AdPlatform implements iAdProvider
         return commission;
     }
 
-    // return boolean or Advert??
     public Advert serveAdvert(AdDescription adDescription)
     {
-
-
         return null;
     }
 
@@ -78,19 +73,23 @@ public class AdPlatform implements iAdProvider
         affiliate.setBalance(affiliate.getBalance()+ 0.5);
         affiliate.setCumulativeTotal(affiliate.getCumulativeTotal() +0.5);
 
+        boolean check = checkPromotion(affiliate);
+    }
+
+    public boolean checkPromotion(Affiliate affiliate)
+    {
         //check for promotion
         if(affiliate.getCumulativeTotal() == 50 && (affiliate.getType() == AffiliateType.BRONZE))
         {
             affiliate.setType(AffiliateType.SILVER);
+            return true;
         }
         if(affiliate.getCumulativeTotal() == 500 && (affiliate.getType() == AffiliateType.SILVER))
         {
             affiliate.setType(AffiliateType.GOLD);
+            return true;
         }
-
-
+        return false;
 
     }
-
-
 }
