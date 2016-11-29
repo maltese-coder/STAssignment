@@ -1,9 +1,9 @@
 package impl;
 
-import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import enums.MediaType;
 
 import java.awt.*;
+import java.util.List;
 
 /**
  * Created by Matthew on 19-Nov-16.
@@ -12,9 +12,9 @@ public class AdFormat
 {
     private MediaType mediaType;
     private Dimension dimensions;
-    private Keywords keywords;
+    private List<String> keywords;
 
-    public AdFormat(MediaType mediaType, Dimension dimensions, Keywords keywords)
+    public AdFormat(MediaType mediaType, Dimension dimensions, List<String> keywords)
     {
         this.mediaType = mediaType;
         this.dimensions = dimensions;
@@ -41,12 +41,12 @@ public class AdFormat
         this.dimensions = dimensions;
     }
 
-    public Keywords getKeywords()
+    public List<String> getKeywords()
     {
         return keywords;
     }
 
-    public void setKeywords(Keywords keywords)
+    public void setKeywords(List<String> keywords)
     {
         this.keywords = keywords;
     }

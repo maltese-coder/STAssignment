@@ -1,7 +1,9 @@
 package impl;
 
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
+import enums.MediaType;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -10,11 +12,29 @@ import java.util.List;
 public class AdDescription
 {
     private List<String> keywords;
-    private AdFormat format;
+    private Dimension dimensions;
+    private MediaType mediaType;
 
-    public AdDescription(List<String> keywords, AdFormat format) {
+    public AdDescription(List<String> keywords, Dimension dimensions, MediaType mediaType) {
         this.keywords = keywords;
-        this.format = format;
+        this.dimensions = dimensions;
+        this.mediaType = mediaType;
+    }
+
+    public Dimension getDimensions() {
+        return dimensions;
+    }
+
+    public void setDimensions(Dimension dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public MediaType getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
     }
 
     public List<String> getKeywords() {
@@ -25,11 +45,4 @@ public class AdDescription
         this.keywords = keywords;
     }
 
-    public AdFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(AdFormat format) {
-        this.format = format;
-    }
 }

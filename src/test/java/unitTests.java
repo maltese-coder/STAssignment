@@ -1,10 +1,16 @@
 import enums.AffiliateType;
+import enums.MediaType;
+import impl.AdDescription;
+import impl.AdFormat;
 import impl.AdPlatform;
 import impl.Affiliate;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -32,7 +38,7 @@ public class unitTests
         int previousCount = adPlatform.getAffiliateCount();
 
         adPlatform.registerAffiliate(affiliate);
-
+        //adPlatform.serveAdvert(new AdDescription(new ArrayList<String>(), new Dimension(100,100), MediaType.IMAGE ));
         assertEquals(previousCount + 1, adPlatform.getAffiliateCount());
     }
 
