@@ -23,12 +23,16 @@ public class AdPlatform implements iAdProvider
         return true;
     }
 
-
-    public boolean settleAffiliateBalance(Affiliate affiliate)
+    public int getAffiliateCount()
     {
-        if (!(affiliate.getBalance() < 5))
+        return  affiliatesMap.size();
+    }
+
+    public double settleAffiliateBalance(Affiliate affiliate)
+    {
+        if ((affiliate.getBalance() < 5))
         {
-            return false;
+            return -1;
         }
 
         double commission = getCommission(affiliate);
@@ -36,7 +40,7 @@ public class AdPlatform implements iAdProvider
 
         affiliate.setBalance(0);
 
-        return true;
+        return payment;
     }
 
     public double getCommission(Affiliate affiliate)
