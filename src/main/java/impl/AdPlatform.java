@@ -1,7 +1,7 @@
 package impl;
 
 import enums.AffiliateType;
-import interfaces.AdProvider;
+import interfaces.iAdProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by Matthew on 19-Nov-16.
  */
-public class AdPlatform implements AdProvider
+public class AdPlatform implements iAdProvider
 {
     //private List<impl.Affiliate> affiliatesMap = new ArrayList<impl.Affiliate>();
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
-    private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
+    private List<iAdProvider> adProvidersList = new ArrayList<iAdProvider>();
 
 
 
@@ -62,7 +62,7 @@ public class AdPlatform implements AdProvider
         return commission;
     }
 
-    // return boolean or impl.Advert??
+    // return boolean or Advert??
     public Advert serveAdvert(AdDescription adDescription)
     {
 
@@ -70,7 +70,7 @@ public class AdPlatform implements AdProvider
         return null;
     }
 
-    public void adClicked( int aID)
+    public void adClicked(int aID)
     {
         Affiliate affiliate = affiliatesMap.get(aID);
 
@@ -78,10 +78,8 @@ public class AdPlatform implements AdProvider
         affiliate.setBalance(affiliate.getBalance()+ 0.5);
         affiliate.setCumulativeTotal(affiliate.getCumulativeTotal() +0.5);
 
-        double balance = affiliate.getCumulativeTotal();
-
         //check for promotion
-        if(balance == 50 && (affiliate.getType() == AffiliateType.BRONZE))
+        if(affiliate.getCumulativeTotal() == 50 && (affiliate.getType() == AffiliateType.BRONZE))
         {
             affiliate.setType(AffiliateType.SILVER);
         }

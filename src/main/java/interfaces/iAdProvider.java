@@ -6,7 +6,7 @@ import impl.Advert;
 /**
  * Created by Matthew on 19-Nov-16.
  */
-public interface AdProvider
+public interface iAdProvider
 {
     String name = null;
 

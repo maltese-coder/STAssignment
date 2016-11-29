@@ -6,10 +6,13 @@ package impl;
 public class Advert
 {
     private int id;
+    private String MediaUrl;
+    private AdFormat adFormat;
 
-    public Advert(int id)
-    {
+    public Advert(int id, String mediaUrl, AdFormat adFormat) {
         this.id = id;
+        MediaUrl = mediaUrl;
+        this.adFormat = adFormat;
     }
 
     public int getId()
@@ -22,16 +25,19 @@ public class Advert
         this.id = id;
     }
 
-    public String getMediaURL()
-    {
-        return null;
+    public String getMediaUrl() {
+        return MediaUrl;
     }
 
-    public AdFormat getFormat()
-    {
-
-        return null;
-
+    public void setMediaUrl(String mediaUrl) {
+        MediaUrl = mediaUrl;
     }
 
+    public AdFormat getAdFormat() {
+        return adFormat;
+    }
+
+    public void setAdFormat(AdFormat adFormat) {
+        this.adFormat = adFormat;
+    }
 }
