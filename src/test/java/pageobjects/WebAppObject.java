@@ -2,6 +2,8 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 /**
  * Created by matt on 13/12/2016.
  */
@@ -34,6 +36,14 @@ public class WebAppObject {
     {
         return driver.findElement(By.cssSelector(name)).getAttribute("innerText");
     }
+
+    public String getTitle(){
+        return this.getElementText("h4.md-title");
+    }
+
+//    public String getElementTextObj(WebElement e){
+//        return e.getAttribute("")
+//    }
 
     public void clickElement(String name){
         driver.findElement(By.id(name)).click();
