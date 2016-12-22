@@ -1,6 +1,5 @@
 package ModelBasedTesting;
 
-import junit.framework.Assert;
 import nz.ac.waikato.modeljunit.*;
 import nz.ac.waikato.modeljunit.coverage.ActionCoverage;
 import nz.ac.waikato.modeljunit.coverage.StateCoverage;
@@ -20,73 +19,104 @@ public class AffiliateOperatorModel implements FsmModel
     //State Variables
     private AffiliateOperatorStates modelAffiliate = AffiliateOperatorStates.BRONZE;
     private boolean
-        bronze = false,
+        bronze = true,
         silver = false,
         gold = false;
 
-    private double TotalCommision = 0;
+    private double TotalBalance = 0;
+    private double CurrentBalance = 0;
 
     public AffiliateOperatorStates getState()
     {
         return modelAffiliate;
     }
 
+    public boolean checkWithdraw()
+    {
+        if(CurrentBalance >= 5)
+            return true;
+        else
+            return false;
+    }
+
     public void reset(final boolean b)
     {
+        //reset SUT
         if(b)
         {
             systemUnderTest = new AffiliateOperator();
-            TotalCommision = 0;
         }
+
+        //reset test model
+        bronze = true;
+        silver = false;
+        gold = false;
+        TotalBalance = 0;
+        CurrentBalance = 0;
         modelAffiliate = AffiliateOperatorStates.BRONZE;
     }
 
-    public boolean addCommisionGuard() {
-        return  getState() == AffiliateOperatorStates.BRONZE || getState() == AffiliateOperatorStates.SILVER || getState() == AffiliateOperatorStates.GOLD;
-    }
-    public @Action void addCommision()
+    public boolean withdrawBalanceGuard(){return checkWithdraw();}
+    public @Action void withdrawBalance()
     {
-        systemUnderTest.increaseCommision();
+        systemUnderTest.withdrawCurrBalance();
 
-        TotalCommision +=0.5;
+        CurrentBalance = 0;
+
+       // org.junit.Assert.assertEquals("The SUT's balance does not match the balance of the model after withdrawing commision not yet collected", 0, systemUnderTest.getCurrentBalance());
+        org.junit.Assert.assertEquals(0,systemUnderTest.getCurrentBalance(),0.001);
+    }
+
+    public boolean adClickGuard() {
+        return getState() == AffiliateOperatorStates.BRONZE || getState() == AffiliateOperatorStates.SILVER || getState() == AffiliateOperatorStates.GOLD;
+    }
+    public @Action void adClick()
+    {
+        systemUnderTest.increaseBalance();
+
+        TotalBalance +=0.5;
+        CurrentBalance +=0.5;
 
         //updating model
-        if(getState().equals(AffiliateOperatorStates.BRONZE) && TotalCommision <50.0)
+        if(TotalBalance <50.0)
         { // is in bronze but cannot go to silver yet
-            bronze = true;
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being bronze after increase in commision", bronze, systemUnderTest.isBronze());
+            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being BRONZE after increase in balance", bronze, systemUnderTest.isBronze());
         }
-        else
-        if(getState().equals(AffiliateOperatorStates.SILVER) && TotalCommision <500.0)
-        {//is in silver but cannot go to gold yet
-
-            silver = true;
-            //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being silver after increase in commision", silver, systemUnderTest.isSilver());
-        }
-        else if(getState().equals(AffiliateOperatorStates.BRONZE) && TotalCommision >=50.0)
+        else if(TotalBalance ==50.0)
         {//can be promoted to silver
             modelAffiliate = AffiliateOperatorStates.SILVER;
             bronze = false;
             silver = true;
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting to silver", silver, systemUnderTest.isSilver());
+            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting to SILVER", silver, systemUnderTest.isSilver());
         }
         else
-        if(getState().equals(AffiliateOperatorStates.SILVER) && TotalCommision >=500.0)
+        if(TotalBalance <500.0)
+        {//is in silver but cannot go to gold yet
+            //Checking correspondence between model and SUT.
+            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being SILVER after increase in balance", silver, systemUnderTest.isSilver());
+        }
+        else
+        if(TotalBalance ==500.0)
         {//can be promoted to gold
             modelAffiliate = AffiliateOperatorStates.GOLD;
             silver = false;
             gold = true;
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting to gold", gold, systemUnderTest.isGold());
+            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting to GOLD", gold, systemUnderTest.isGold());
+        }
+        else
+        {   //is in gold therefore cannot go further
+            //Checking correspondence between model and SUT.
+            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being GOLD after increase in balance", gold, systemUnderTest.isGold());
         }
 
         //Checking correspondence between model and SUT.
+        org.junit.Assert.assertEquals(TotalBalance,systemUnderTest.getTotalBalance(),0.001);
         org.junit.Assert.assertEquals("SUT has multiple states values at once.", false, systemUnderTest.getInactiveStates());
     }
 

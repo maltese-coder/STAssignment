@@ -94,6 +94,5 @@ public class AdPlatform implements iAdProvider
             return true;
         }
         return false;
-
     }
 }

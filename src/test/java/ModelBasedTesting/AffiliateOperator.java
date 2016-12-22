@@ -5,19 +5,18 @@ package ModelBasedTesting;
  */
 public class AffiliateOperator
 {
-    public AffiliateOperator()
-    {
-        bronze = true;
-        totalCommision = 0.0;
-
-    }
-
     private boolean
-        bronze = false,
+        bronze = true,
         silver = false,
         gold = false;
 
-    private double totalCommision;
+    private double totalBalance = 0;
+    private double currentBalance = 0;
+
+    public double getCurrentBalance()
+    {
+        return currentBalance;
+    }
 
     public boolean isBronze()
     {
@@ -34,27 +33,33 @@ public class AffiliateOperator
         return gold;
     }
 
-    public double getTotalCommision()
+    public double getTotalBalance()
     {
-        return totalCommision;
+        return totalBalance;
     }
 
-    public void increaseCommision()
+    public void withdrawCurrBalance()
     {
-        if(totalCommision == 0)
+        currentBalance = 0;
+    }
+
+    public void increaseBalance()
+    {
+        if(totalBalance == 0)
             bronze = true;
-        totalCommision+=0.5;
+        totalBalance +=0.5;
+        currentBalance +=0.5;
         this.checkPromotion();
     }
 
     public boolean checkPromotion()
     {
-        if(totalCommision >= 50 && isBronze())
+        if(totalBalance >= 50 && isBronze())
         {
             this.promoteToSilver();
             return true;
         }
-        else if(totalCommision >= 500 && isSilver())
+        else if(totalBalance >= 500 && isSilver())
         {
             this.promoteToGold();
             return true;
@@ -62,22 +67,9 @@ public class AffiliateOperator
         return false;
     }
 
-    public boolean createNewUser()
-    {
-        if(totalCommision>0 || bronze || silver || gold)
-            return false;
-        else
-        {
-            this.totalCommision = 0;
-            bronze = true;
-
-            return true;
-        }
-    }
-
     public boolean promoteToSilver()
     {
-        if(totalCommision<50.0 || silver || gold)
+        if(totalBalance <50.0 || silver || gold)
             return false;
         else
         {
@@ -90,7 +82,7 @@ public class AffiliateOperator
 
     public boolean promoteToGold()
     {
-        if(totalCommision<500.0 || bronze || gold)
+        if(totalBalance <500.0 || bronze || gold)
             return false;
         else
         {
