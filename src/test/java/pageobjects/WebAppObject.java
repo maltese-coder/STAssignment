@@ -17,7 +17,7 @@ public class WebAppObject {
     }
 
     public void visit(){
-        driver.get("localhost:3000");
+        driver.get("localhost:8080");
     }
 
     public void login(String username, String password){
@@ -63,4 +63,6 @@ public class WebAppObject {
             System.out.print(e.getMessage());
         }
     }
+
+
 }

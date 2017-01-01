@@ -25,7 +25,7 @@ public class AdPlatform implements iAdProvider
 
     public int getAffiliateCount()
     {
-        return  affiliatesMap.size();
+        return affiliatesMap.size();
     }
 
     public double settleAffiliateBalance(Affiliate affiliate)

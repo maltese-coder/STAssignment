@@ -1,6 +1,7 @@
 package cucumberTests;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,6 +19,7 @@ public class StepDefinitions {
 
     @Given("^I am an affiliate trying to log in$")
     public void i_am_an_affiliate_trying_to_log_in() throws Throwable {
+        System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
         driver = new ChromeDriver();
 
         webAppObject = new WebAppObject(driver);
@@ -34,6 +36,7 @@ public class StepDefinitions {
     public void i_should_be_taken_to_my_account_admin_page() throws Throwable {
 
         assertEquals("Main Menu", webAppObject.getTitle());
+
     }
 
     @When("^I login using invalid credentials$")
@@ -50,6 +53,7 @@ public class StepDefinitions {
     @Then("^I should remain on the login page$")
     public void i_should_remain_on_the_login_page() throws Throwable {
         assertEquals("Login", webAppObject.getTitle());
+
     }
 
     @Given("^I am a logged in affiliate$")
@@ -74,6 +78,7 @@ public class StepDefinitions {
     @Then("^I should see a button allowing me to withdraw my balance$")
     public void i_should_see_a_button_allowing_me_to_withdraw_my_balance() throws Throwable {
         assertEquals(1,driver.findElements(By.id("withdrawBtn")).size());
+
     }
 
     @Given("^my balance is (\\d+)\\.(\\d+)$")
@@ -109,5 +114,10 @@ public class StepDefinitions {
     @Then("^I should see a message indicating success$")
     public void i_should_see_a_message_indicating_success() throws Throwable {
         assertEquals("Success",webAppObject.getElementText("h2.dialogTitle"));
+    }
+
+    @After
+    public void cleanUp(){
+        driver.close();
     }
 }

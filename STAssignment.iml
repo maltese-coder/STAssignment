@@ -76,5 +76,7 @@
     <orderEntry type="library" name="Maven: net.sf.jung:jung-jai:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jung:jung-visualization:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.uispec4j:uispec4j:jdk16:2.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:6.0" level="project" />
   </component>
 </module>

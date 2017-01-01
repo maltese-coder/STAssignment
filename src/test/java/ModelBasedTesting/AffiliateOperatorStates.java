@@ -5,7 +5,8 @@ package ModelBasedTesting;
  */
 public enum AffiliateOperatorStates
 {
+    UNREGISTERED,
     BRONZE,
     SILVER,
-    GOLD;
+    GOLD
 }

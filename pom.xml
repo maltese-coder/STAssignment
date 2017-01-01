@@ -35,11 +35,13 @@
             <version>1.2.5</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
         <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-junit</artifactId>
-                <version>1.2.5</version>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.5</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
         <dependency>
@@ -60,6 +62,19 @@
             <artifactId>modeljunit</artifactId>
             <version>2.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+        </dependency>
+
 
     </dependencies>
 </project>

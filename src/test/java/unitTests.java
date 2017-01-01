@@ -35,7 +35,6 @@ public class unitTests
         int previousCount = adPlatform.getAffiliateCount();
 
         adPlatform.registerAffiliate(affiliate);
-        //adPlatform.serveAdvert(new AdDescription(new ArrayList<String>(), new Dimension(100,100), MediaType.IMAGE ));
         assertEquals(previousCount + 1, adPlatform.getAffiliateCount());
     }
 
@@ -44,7 +43,7 @@ public class unitTests
     {
         Affiliate affiliate = new Affiliate(2, "Affiliate 2");
 
-        affiliate.setBalance(4);
+        affiliate.setBalance(4.99);
 
         assertEquals(-1, adPlatform.settleAffiliateBalance(affiliate), 0.0001);
     }
@@ -190,10 +189,10 @@ public class unitTests
     public void testPromotionToSilver()
     {
         Affiliate affiliate = new Affiliate(1,"Matthew");
-        affiliate.setCumulativeTotal(50);
-
         adPlatform.registerAffiliate(affiliate);
-        adPlatform.checkPromotion(affiliate);
+
+        affiliate.setCumulativeTotal(49.50);
+        adPlatform.adClicked(affiliate.getId());
 
         assertEquals(AffiliateType.SILVER,affiliate.getType());
     }
@@ -202,13 +201,13 @@ public class unitTests
     public void testPromotionToGold()
     {
         Affiliate affiliate = new Affiliate(1,"Matthew");
-        affiliate.setCumulativeTotal(500);
+        adPlatform.registerAffiliate(affiliate);
+
+        affiliate.setCumulativeTotal(499.50);
         affiliate.setType(AffiliateType.SILVER);
 
-        adPlatform.registerAffiliate(affiliate);
-        adPlatform.checkPromotion(affiliate);
+        adPlatform.adClicked(affiliate.getId());
 
         assertEquals(AffiliateType.GOLD,affiliate.getType());
-
     }
 }
