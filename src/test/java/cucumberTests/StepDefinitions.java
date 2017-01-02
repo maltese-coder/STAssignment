@@ -76,7 +76,7 @@ public class StepDefinitions {
 
     @Then("^I should see a button allowing me to withdraw my balance$")
     public void i_should_see_a_button_allowing_me_to_withdraw_my_balance() throws Throwable {
-        assertEquals(1,driver.findElements(By.id("withdrawBtn")).size());
+        assertTrue(webAppObject.elementExistsID("withdrawBtn"));
     }
 
     @Given("^my balance is (\\d+)\\.(\\d+)$")

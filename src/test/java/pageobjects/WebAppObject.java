@@ -34,7 +34,7 @@ public class WebAppObject {
     }
 
     public void visit(){
-        driver.get("localhost:8080");
+        driver.get("localhost:3000");
     }
 
     public void login(String username, String password){
