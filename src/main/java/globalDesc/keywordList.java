@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class keywordList {
 
+    // 50 random keywords
     List<String> allKeywords = Arrays.asList("wail","rural","aloof","invincible","ghost","swanky","stimulating",
             "acoustics","sheet","part","slimy","brother","high-pitched","stupendous","food","wild","abounding","cows",
             "difficult","acoustic","grateful","destroy","error","royal","brainy","neck","automatic","grandiose",

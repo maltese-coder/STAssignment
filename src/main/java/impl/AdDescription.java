@@ -1,6 +1,7 @@
 package impl;
 
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
+import enums.DimensionType;
 import enums.MediaType;
 
 import java.awt.*;
@@ -12,21 +13,21 @@ import java.util.List;
 public class AdDescription
 {
     private List<String> keywords;
-    private Dimension dimensions;
+    private DimensionType dimension;
     private MediaType mediaType;
 
-    public AdDescription(List<String> keywords, Dimension dimensions, MediaType mediaType) {
+    public AdDescription(List<String> keywords, DimensionType dimension, MediaType mediaType) {
         this.keywords = keywords;
-        this.dimensions = dimensions;
+        this.dimension = dimension;
         this.mediaType = mediaType;
     }
 
-    public Dimension getDimensions() {
-        return dimensions;
+    public DimensionType getDimension() {
+        return dimension;
     }
 
-    public void setDimensions(Dimension dimensions) {
-        this.dimensions = dimensions;
+    public void setDimension(DimensionType dimension) {
+        this.dimension = dimension;
     }
 
     public MediaType getMediaType() {

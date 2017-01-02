@@ -1,5 +1,6 @@
 package impl;
 
+import enums.DimensionType;
 import enums.MediaType;
 
 import java.awt.*;
@@ -11,13 +12,12 @@ import java.util.List;
 public class AdFormat
 {
     private MediaType mediaType;
-    private Dimension dimensions;
+    private DimensionType dimension;
     private List<String> keywords;
 
-    public AdFormat(MediaType mediaType, Dimension dimensions, List<String> keywords)
-    {
+    public AdFormat(MediaType mediaType, DimensionType dimension, List<String> keywords) {
         this.mediaType = mediaType;
-        this.dimensions = dimensions;
+        this.dimension = dimension;
         this.keywords = keywords;
     }
 
@@ -31,14 +31,12 @@ public class AdFormat
         this.mediaType = mediaType;
     }
 
-    public Dimension getDimensions()
-    {
-        return dimensions;
+    public DimensionType getDimension() {
+        return dimension;
     }
 
-    public void setDimensions(Dimension dimensions)
-    {
-        this.dimensions = dimensions;
+    public void setDimension(DimensionType dimension) {
+        this.dimension = dimension;
     }
 
     public List<String> getKeywords()
