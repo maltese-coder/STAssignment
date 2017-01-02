@@ -1,16 +1,10 @@
 import enums.AffiliateType;
-import enums.MediaType;
-import impl.AdDescription;
-import impl.AdFormat;
+
 import impl.AdPlatform;
 import impl.Affiliate;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
-
-import java.awt.*;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -20,7 +14,7 @@ import static org.mockito.Mockito.when;
  */
 public class unitTests
 {
-    AdPlatform adPlatform;
+    private AdPlatform adPlatform;
 
     @Before
     public void setup()

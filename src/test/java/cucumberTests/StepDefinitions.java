@@ -1,13 +1,9 @@
 package cucumberTests;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.WebAppObject;
 
 import static org.junit.Assert.assertEquals;
@@ -16,11 +12,6 @@ import static org.junit.Assert.assertTrue;
 public class StepDefinitions {
 
     WebAppObject webAppObject;
-
-    @After
-    public void tearDown(){
-        webAppObject.close();
-    }
 
     @Given("^I am an affiliate trying to log in$")
     public void i_am_an_affiliate_trying_to_log_in() throws Throwable {
@@ -118,5 +109,10 @@ public class StepDefinitions {
     public void i_should_see_a_message_indicating_success() throws Throwable {
         webAppObject.sleep(1);
         assertEquals("Success",webAppObject.getElementText("h2.dialogTitle"));
+    }
+
+    @After
+    public void tearDown(){
+        webAppObject.close();
     }
 }

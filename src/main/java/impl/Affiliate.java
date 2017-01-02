@@ -72,6 +72,7 @@ public class Affiliate
         this.cumulativeTotal = cumulativeTotal;
     }
 
+    // Get an advert from the platform ap with description ad
     public Advert requestAdvert(AdPlatform ap, AdDescription ad){
         return ap.serveAdvert(ad);
     }

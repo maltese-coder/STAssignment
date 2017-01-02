@@ -43,12 +43,6 @@ public class WebAppObject {
         driver.findElement(By.id("loginBtn")).click();
     }
 
-    public void correctLogin(){
-        driver.findElement(By.id("username")).sendKeys("Affiliate1");
-        driver.findElement(By.id("password")).sendKeys("Password1");
-        driver.findElement(By.id("loginBtn")).click();
-    }
-
     public boolean elementExistsCSS(String css){
         if(driver.findElements(By.cssSelector(css)).size() > 0){
             return true;

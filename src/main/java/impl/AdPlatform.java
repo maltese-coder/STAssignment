@@ -7,21 +7,22 @@ import interfaces.iAdProvider;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Matthew on 19-Nov-16.
  */
 public class AdPlatform implements iAdProvider
 {
-    //private List<impl.Affiliate> affiliatesMap = new ArrayList<impl.Affiliate>();
+    // Map of all affiliates
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
+
+    // List of all Ad Providers
     private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
 
-    public AdPlatform(){
+    public AdPlatform()
+    {}
 
-    }
-
+    //Create an AdPlatform with an X amount of providers providing Y different adverts each
     public AdPlatform(int providers, int adverts){
         for(int i = 0; i < providers; i++){
             adProvidersList.add(new AdProvider(adverts));
@@ -32,6 +33,7 @@ public class AdPlatform implements iAdProvider
         return affiliatesMap;
     }
 
+    //insert new affiliate into map
     public boolean registerAffiliate(Affiliate affiliate)
     {
         affiliatesMap.put(affiliate.getId(),affiliate);
@@ -82,16 +84,21 @@ public class AdPlatform implements iAdProvider
 
     public Advert serveAdvert(AdDescription adDescription)
     {
+        //This will contain a random advert from each Ad Provider that satisfies the adDescription
         List<Advert> adverts = new ArrayList<Advert>();
 
+        //For every ad provider signed up with the system, get a random ad from each that satisfies the description
+        // from the affiliate and add it to the temporary list of "adverts"
         for(AdProvider ap : adProvidersList){
             adverts.add(ap.serveAdvert(adDescription));
         }
 
+        //Return a random ad from the previously made list
         if(adverts.size() > 0){
             return adverts.get(Global.randInt(0, adverts.size() - 1));
         }
 
+        //no ad was found with the necessary description
         return null;
     }
 
@@ -99,7 +106,7 @@ public class AdPlatform implements iAdProvider
     {
         Affiliate affiliate = affiliatesMap.get(aID);
 
-        //increase pay by 50c
+        //increase balance by 50c
         affiliate.setBalance(affiliate.getBalance()+ 0.5);
         affiliate.setCumulativeTotal(affiliate.getCumulativeTotal() +0.5);
 

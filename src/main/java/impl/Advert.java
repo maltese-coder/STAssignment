@@ -11,7 +11,7 @@ public class Advert
 
     public Advert(int id, String mediaUrl, AdFormat adFormat) {
         this.id = id;
-        MediaUrl = mediaUrl;
+        this.MediaUrl = mediaUrl;
         this.adFormat = adFormat;
     }
 
@@ -41,6 +41,7 @@ public class Advert
         this.adFormat = adFormat;
     }
 
+    // Display data
     @Override
     public String toString(){
         return this.getId() + "\n" + this.getMediaUrl() + "\n" + this.getAdFormat().toString();

@@ -39,11 +39,6 @@ public class AdFormat
         this.dimension = dimension;
     }
 
-    @Override
-    public String toString(){
-        return this.getMediaType().toString() + " - " + this.getDimension().toString() + " - " + this.getKeywords().toString();
-    }
-
     public List<String> getKeywords()
     {
         return keywords;
@@ -52,5 +47,11 @@ public class AdFormat
     public void setKeywords(List<String> keywords)
     {
         this.keywords = keywords;
+    }
+
+    // Display Data
+    @Override
+    public String toString(){
+        return this.getMediaType().toString() + " - " + this.getDimension().toString() + " - " + this.getKeywords().toString();
     }
 }

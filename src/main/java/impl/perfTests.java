@@ -29,28 +29,26 @@ public class perfTests implements iThreadListener {
 //
 //        }
         
-        while(check){
+        while(check)
+        {
+            //Add a new affiliate to the performance test
             adPlatform.registerAffiliate(new Affiliate(counter,"Affiliate"+counter));
 
+            //Go through every affiliate stored in the map
             for(Affiliate a : adPlatform.getAffiliatesMap().values()){
-
+                //Create a new random AdDescription which we will use to get an Ad from
                 AdDescription ad = new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
                 AffiliateThread T1 = new AffiliateThread(a,adPlatform,ad);
                 T1.addListener(this);
                 T1.start();
-
-
-
-
-
             }
-
-
             counter++;
-            System.out.println("COUNT: "+adPlatform.getAffiliateCount());
+//            System.out.println("COUNT: "+adPlatform.getAffiliateCount());
         }
 
-        System.out.println("COUNT: "+counter);
+
+
+//        System.out.println("COUNT: "+counter);
     }
 
     public void setFalse(){
