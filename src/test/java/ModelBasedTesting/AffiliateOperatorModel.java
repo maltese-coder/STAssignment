@@ -5,10 +5,8 @@ import impl.AdPlatform;
 import impl.Affiliate;
 import nz.ac.waikato.modeljunit.*;
 import nz.ac.waikato.modeljunit.coverage.*;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -108,8 +106,8 @@ public class AffiliateOperatorModel implements FsmModel
         { // is in bronze but cannot go to silver yet
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being " +
-                            "BRONZE after increase in balance",bronze, tempAffiliate.getType() == AffiliateType.BRONZE);
+            org.junit.Assert.assertEquals("SUT does not match model...Should still be bronze when less " +
+                    "than 50",bronze, tempAffiliate.getType() == AffiliateType.BRONZE);
         }
         else if(TotalBalance ==50.0)
         {//can be promoted to silver
@@ -118,15 +116,15 @@ public class AffiliateOperatorModel implements FsmModel
             silver = true;
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting " +
-                    "to SILVER", silver, tempAffiliate.getType() == AffiliateType.SILVER);
+            org.junit.Assert.assertEquals("SUT does not match model...should be SILVER after reaching " +
+                    "50", silver, tempAffiliate.getType() == AffiliateType.SILVER);
         }
         else
         if(TotalBalance <500.0)
         {//is in silver but cannot go to gold yet
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being " +
-                    "SILVER after increase in balance", silver, tempAffiliate.getType() == AffiliateType.SILVER);
+            org.junit.Assert.assertEquals("SUT does not match model...Should still be SILVER when between " +
+                    "50 and 500", silver, tempAffiliate.getType() == AffiliateType.SILVER);
         }
         else
         if(TotalBalance ==500.0)
@@ -136,14 +134,14 @@ public class AffiliateOperatorModel implements FsmModel
             gold = true;
 
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after promoting " +
-                    "to GOLD", gold, tempAffiliate.getType() == AffiliateType.GOLD);
+            org.junit.Assert.assertEquals("SUT does not match model...Should be GOLD after reaching " +
+                    "500", gold, tempAffiliate.getType() == AffiliateType.GOLD);
         }
         else
         {   //is in gold therefore cannot go further
             //Checking correspondence between model and SUT.
-            org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after still being " +
-                    "GOLD after increase in balance", gold, tempAffiliate.getType() == AffiliateType.GOLD);
+            org.junit.Assert.assertEquals("SUT does not match model...Should be GOLD when balance is " +
+                    "greater than 500", gold, tempAffiliate.getType() == AffiliateType.GOLD);
         }
 
         //Checking correspondence between model and SUT.
@@ -198,12 +196,12 @@ public class AffiliateOperatorModel implements FsmModel
 
     @Test
     public void LookAheadTesting() {
-
         final LookaheadTester tester = new LookaheadTester(new AffiliateOperatorModel());
 
-        tester.setDepth(10);
-        tester.setNewActionValue(50);
-        tester.setNewTransValue(100);
+        tester.setDepth(109);
+        tester.setNewActionValue(109);
+        tester.setNewTransValue(109);
+        tester.setMaxLength(1000);
 
 //        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
         tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
