@@ -27,11 +27,19 @@ public class Global {
 
         Random random = new Random();
 
-        for(int i = 0; i <= 3; i++) {
-            int randomNum = random.nextInt((allKeywords.size() - 0) + 1) + 0;
+        for(int i = 0; i < 5; i++) {
+            int randomNum = random.nextInt((allKeywords.size()-1 - 0) + 1) + 0;
             temp.add(allKeywords.get(randomNum));
         }
 
         return temp;
+    }
+
+    public static int randInt(int min, int max) {
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 }

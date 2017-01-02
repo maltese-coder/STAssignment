@@ -46,4 +46,10 @@ public class AdDescription
         this.keywords = keywords;
     }
 
+    @Override
+    public String toString(){
+        return this.getMediaType().toString() + " - " + this.getDimension().toString() + " - " + this.getKeywords().toString();
+    }
+
+
 }

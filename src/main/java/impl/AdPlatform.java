@@ -1,11 +1,13 @@
 package impl;
 
 import enums.AffiliateType;
+import globalDesc.Global;
 import interfaces.iAdProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Matthew on 19-Nov-16.
@@ -15,6 +17,20 @@ public class AdPlatform implements iAdProvider
     //private List<impl.Affiliate> affiliatesMap = new ArrayList<impl.Affiliate>();
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
     private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
+
+    public AdPlatform(){
+
+    }
+
+    public AdPlatform(int providers, int adverts){
+        for(int i = 0; i < providers; i++){
+            adProvidersList.add(new AdProvider(adverts));
+        }
+    }
+
+    public HashMap<Integer, Affiliate> getAffiliatesMap() {
+        return affiliatesMap;
+    }
 
     public boolean registerAffiliate(Affiliate affiliate)
     {
@@ -66,6 +82,16 @@ public class AdPlatform implements iAdProvider
 
     public Advert serveAdvert(AdDescription adDescription)
     {
+        List<Advert> adverts = new ArrayList<Advert>();
+
+        for(AdProvider ap : adProvidersList){
+            adverts.add(ap.serveAdvert(adDescription));
+        }
+
+        if(adverts.size() > 0){
+            return adverts.get(Global.randInt(0, adverts.size() - 1));
+        }
+
         return null;
     }
 

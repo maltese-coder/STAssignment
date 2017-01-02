@@ -71,4 +71,8 @@ public class Affiliate
     {
         this.cumulativeTotal = cumulativeTotal;
     }
+
+    public Advert requestAdvert(AdPlatform ap, AdDescription ad){
+        return ap.serveAdvert(ad);
+    }
 }

@@ -40,4 +40,9 @@ public class Advert
     public void setAdFormat(AdFormat adFormat) {
         this.adFormat = adFormat;
     }
+
+    @Override
+    public String toString(){
+        return this.getId() + "\n" + this.getMediaUrl() + "\n" + this.getAdFormat().toString();
+    }
 }

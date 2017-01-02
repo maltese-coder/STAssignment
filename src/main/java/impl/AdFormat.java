@@ -39,6 +39,11 @@ public class AdFormat
         this.dimension = dimension;
     }
 
+    @Override
+    public String toString(){
+        return this.getMediaType().toString() + " - " + this.getDimension().toString() + " - " + this.getKeywords().toString();
+    }
+
     public List<String> getKeywords()
     {
         return keywords;
