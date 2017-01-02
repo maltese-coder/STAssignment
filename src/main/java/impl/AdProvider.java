@@ -1,5 +1,6 @@
 package impl;
 
+import globalDesc.Global;
 import interfaces.iAdProvider;
 
 import java.math.BigInteger;
@@ -17,9 +18,9 @@ public class AdProvider implements iAdProvider {
 
     public AdProvider(int maxAdverts){
         for (int i = 0; i <= maxAdverts; i++){
-            AdFormat tempFormat =
+            //AdFormat tempFormat = Global.randomEnum()
 
-            Advert temp = new Advert(i,generateRandomURL(),
+            //Advert temp = new Advert(i,generateRandomURL(),
         }
     }
 

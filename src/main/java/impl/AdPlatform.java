@@ -14,7 +14,7 @@ public class AdPlatform implements iAdProvider
 {
     //private List<impl.Affiliate> affiliatesMap = new ArrayList<impl.Affiliate>();
     private HashMap<Integer,Affiliate> affiliatesMap = new HashMap<Integer, Affiliate>();
-    private List<iAdProvider> adProvidersList = new ArrayList<iAdProvider>();
+    private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
 
     public boolean registerAffiliate(Affiliate affiliate)
     {

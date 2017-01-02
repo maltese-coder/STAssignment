@@ -196,12 +196,12 @@ public class AffiliateOperatorModel implements FsmModel
 
     @Test
     public void LookAheadTesting() {
+
         final LookaheadTester tester = new LookaheadTester(new AffiliateOperatorModel());
 
-        tester.setDepth(109);
-        tester.setNewActionValue(109);
-        tester.setNewTransValue(109);
-        tester.setMaxLength(1000);
+        tester.setDepth(3000);
+        tester.setNewActionValue(110);
+        tester.setNewTransValue(1000);
 
 //        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
         tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
@@ -215,6 +215,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
         tester.generate(1000); //Generates 500 transitions
+
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
 
