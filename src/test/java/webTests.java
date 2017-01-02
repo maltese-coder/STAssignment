@@ -35,7 +35,7 @@ public class webTests {
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1366, 768));
 
-        wao = new WebAppObject(driver);
+        wao = new WebAppObject();
     }
 
 //    @Test
@@ -90,28 +90,32 @@ public class webTests {
 //        assertEquals("You do not have enough balance to withdraw.", wao.getElementText("p.errorText"));
 //    }
 
-    @Test
-    public void testHistory()
-    {
-        wao.visit();
-        wao.correctLogin();
-
-        wao.sleep(1);
-
-        wao.clickElement("historyBtn");
-
-        List<WebElement> history = driver.findElements(By.cssSelector("md-list-item.historyRec"));
-
-
-        System.out.println(wao.getTitle());
+//    @Test
+//    public void testHistory()
+//    {
+//        wao.visit();
+//        wao.correctLogin();
+//
+//        wao.sleep(1);
+//
+//        wao.setBalance("4.99");
+//
+//        wao.sleep(5);
+//
+//        wao.clickElement("historyBtn");
+//
+//        List<WebElement> history = driver.findElements(By.cssSelector("md-list-item.historyRec"));
+//
 //        for(WebElement record : history){
 //            //WebElement record = e.findElement(By.cssSelector("p.oldBal"));
 //
 //            String oldBalance = record.findElement(By.cssSelector("p.oldBal")).getAttribute("innerText");
-//            String result =
+//            String result = wao.getElementText(record, "p.result");
+//            String newBalance = wao.getElementText(record, "p.newBal");
+//
+//            System.out.println(oldBalance + " - " + result + " - " + newBalance);
 //        }
-
-    }
+//      }
 
     @After
     public void tearDown() {

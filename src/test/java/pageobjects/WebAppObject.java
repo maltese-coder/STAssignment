@@ -1,8 +1,13 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.Arrays;
 
 /**
  * Created by matt on 13/12/2016.
@@ -10,10 +15,22 @@ import org.openqa.selenium.WebElement;
 public class WebAppObject {
 
     WebDriver driver;
+    ChromeOptions options;
 
-    public WebAppObject(WebDriver _driver)
+    public WebAppObject()
     {
-        driver = _driver;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            System.setProperty("webdriver.chrome.driver", "/users/matt/documents/chromedriver/chromedriver");
+        }
+        else
+        {
+            System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
+        }
+
+        options = new ChromeOptions();
+        options.setExperimentalOption("excludeSwitches", Arrays.asList("--test-type"));
+        driver = new ChromeDriver(options);
+        driver.manage().window().setSize(new Dimension(1366, 768));
     }
 
     public void visit(){
@@ -32,6 +49,22 @@ public class WebAppObject {
         driver.findElement(By.id("loginBtn")).click();
     }
 
+    public boolean elementExistsCSS(String css){
+        if(driver.findElements(By.cssSelector(css)).size() > 0){
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean elementExistsID(String id){
+        if(driver.findElements(By.id(id)).size() > 0){
+            return true;
+        }
+
+        return false;
+    }
+
     public String getElementText(String name)
     {
         return driver.findElement(By.cssSelector(name)).getAttribute("innerText");
@@ -41,9 +74,9 @@ public class WebAppObject {
         return this.getElementText("h4.md-title");
     }
 
-//    public String getElementTextObj(WebElement e){
-//        return e.getAttribute("")
-//    }
+    public String getElementText(WebElement e, String name){
+        return e.findElement(By.cssSelector(name)).getAttribute("innerText");
+    }
 
     public void clickElement(String name){
         driver.findElement(By.id(name)).click();
@@ -54,6 +87,18 @@ public class WebAppObject {
         sleep(1);
         this.clickElement("withdrawOkBtn");
         sleep(1);
+    }
+
+    public void setBalance(String balance){
+        this.clickElement("setBalanceBtn");
+
+        driver.findElement(By.id("setBalanceText")).sendKeys(balance);
+
+        this.clickElement("setBalanceConfirmBtn");
+    }
+
+    public void close(){
+        driver.close();
     }
 
     public void sleep(int seconds) {

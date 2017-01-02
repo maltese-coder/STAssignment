@@ -33,8 +33,6 @@ public class unitTests
     {
         Affiliate affiliate = new Affiliate(1, "Affiliate 1");
 
-
-
         int previousCount = adPlatform.getAffiliateCount();
 
         adPlatform.registerAffiliate(affiliate);
