@@ -11,7 +11,7 @@ import java.util.Random;
 public class Global {
 
     // List of keywords that an advert could consist of
-    public static List<String> allKeywords = Arrays.asList("wail","rural","aloof","invincible","ghost","swanky","stimulating",
+    private static List<String> allKeywords = Arrays.asList("wail","rural","aloof","invincible","ghost","swanky","stimulating",
             "acoustics","sheet","part","slimy","brother","high-pitched","stupendous","food","wild","abounding","cows",
             "difficult","acoustic","grateful","destroy","error","royal","brainy","neck","automatic","grandiose",
             "dynamic","shame","enormous","carriage","debt","swift","care","afternoon","scrawny","parallel","annoying",
@@ -28,11 +28,24 @@ public class Global {
     // Get 5 random Keywords from the list
     public static List<String> getRandomKeywords(){
         List<String> temp = new ArrayList<String>();
+        List<Integer> intList = new ArrayList<Integer>();
+        boolean check;
 
         for(int i = 0; i < 5; i++) {
-            //TODO: what if same num is chosen a second time?
-           // int randomNum = random.nextInt((allKeywords.size()-1 - 0) + 1) + 0;
-           int randomNum = randInt(0,allKeywords.size()-1);
+            check = true;
+            int randomNum = 0;
+
+            //Checks that a number is not chosen twice in the same session
+            while (check)
+            {
+                randomNum = randInt(0,allKeywords.size()-1);
+                if(!intList.contains(randomNum))
+                {
+                    check = false;
+                    intList.add(randomNum);
+                }
+            }
+
             temp.add(allKeywords.get(randomNum));
         }
 

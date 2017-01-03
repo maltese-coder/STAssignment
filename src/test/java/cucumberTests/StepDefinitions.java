@@ -4,6 +4,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Before;
 import pageobjects.WebAppObject;
 
 import static org.junit.Assert.assertEquals;
@@ -13,9 +14,14 @@ public class StepDefinitions {
 
     WebAppObject webAppObject;
 
+    @Before
+    public void buildUp() throws Throwable
+    {
+        webAppObject = new WebAppObject();
+    }
+
     @Given("^I am an affiliate trying to log in$")
     public void i_am_an_affiliate_trying_to_log_in() throws Throwable {
-        webAppObject = new WebAppObject();
         webAppObject.visit();
     }
 
@@ -50,7 +56,6 @@ public class StepDefinitions {
 
     @Given("^I am a logged in affiliate$")
     public void i_am_a_logged_in_affiliate() throws Throwable {
-        webAppObject = new WebAppObject();
         webAppObject.visit();
         webAppObject.login("Affiliate1","Password1");
     }

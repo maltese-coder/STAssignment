@@ -59,28 +59,17 @@ public class WebAppObject {
         return false;
     }
 
-    public String getElementText(String name)
+    public String getElementText(String css)
     {
-        return driver.findElement(By.cssSelector(name)).getAttribute("innerText");
+        return driver.findElement(By.cssSelector(css)).getAttribute("innerText");
     }
 
     public String getTitle(){
         return this.getElementText("h4.md-title");
     }
 
-    public String getElementText(WebElement e, String name){
-        return e.findElement(By.cssSelector(name)).getAttribute("innerText");
-    }
-
     public void clickElement(String name){
         driver.findElement(By.id(name)).click();
-    }
-
-    public void withdraw() {
-        this.clickElement("withdrawBtn");
-        sleep(1);
-        this.clickElement("withdrawOkBtn");
-        sleep(1);
     }
 
     public void setBalance(String balance){
