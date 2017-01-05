@@ -13,46 +13,37 @@ public class perfTests implements iThreadListener {
     AdPlatform adPlatform = new AdPlatform(50,1000);
 
     boolean check = true;
-    int counter = 0;
+    int counter = 1;
 
     public void runTest(){
-//        for(int i = 0; i <= 512; i++){
-//            adPlatform.registerAffiliate(new Affiliate(i,"Affiliate"+i));
-//        }
-//
-//        for(Affiliate a : adPlatform.getAffiliatesMap().values()){
-//
-//            AdDescription ad = new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
-//            AffiliateThread T1 = new AffiliateThread(a,adPlatform,ad);
-//            T1.addListener(this);
-//            T1.start();
-//
-//        }
-        
         while(check)
         {
             //Add a new affiliate to the performance test
-            adPlatform.registerAffiliate(new Affiliate(counter,"Affiliate"+counter));
+            adPlatform.registerAffiliate(new Affiliate(counter, "Affiliate" + counter));
+            System.out.println("AFFILIATE " + counter + " CREATED");
 
-            //Go through every affiliate stored in the map
-            for(Affiliate a : adPlatform.getAffiliatesMap().values()){
-                //Create a new random AdDescription which we will use to get an Ad from
-                AdDescription ad = new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
-                AffiliateThread T1 = new AffiliateThread(a,adPlatform,ad);
-                T1.addListener(this);
-                T1.start();
+            for (int i = 0; i < counter; i++)
+            {
+                //Go through every affiliate stored in the map
+                for (Affiliate a : adPlatform.getAffiliatesMap().values())
+                {
+                    //Create a new random AdDescription to simulate an affiliate requesting an ad
+                    AdDescription ad = new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
+
+                    AffiliateThread T1 = new AffiliateThread(a, adPlatform, ad, counter);
+                    T1.addListener(this);
+                    T1.start();
+                }
             }
             counter++;
 //            System.out.println("COUNT: "+adPlatform.getAffiliateCount());
         }
-
-
-
 //        System.out.println("COUNT: "+counter);
     }
 
     public void setFalse(){
-        //System.out.println("----------- STOPPED ------------");
+        System.out.println("----------- STOPPED ------------");
         check = false;
+        System.out.println("TOTAL AFFILIATES "+ counter);
     }
 }
