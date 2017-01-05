@@ -199,12 +199,12 @@ public class AffiliateOperatorModel implements FsmModel
 
         final LookaheadTester tester = new LookaheadTester(new AffiliateOperatorModel());
 
-        tester.setDepth(3000);
-        tester.setNewActionValue(110);
-        tester.setNewTransValue(1000);
+        tester.setDepth(10);
+        tester.setNewActionValue(50);
+        tester.setNewTransValue(100);
 
 //        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
-        tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
+        //tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
 
         tester.addListener(new VerboseListener()); //This listener forces the test class to stop running as soon as a failure is encountered in the model.
         tester.addListener(new StopOnFailureListener());
@@ -214,7 +214,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
-        tester.generate(1000); //Generates 500 transitions
+        tester.generate(7); //Generates 500 transitions
 
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
@@ -223,19 +223,20 @@ public class AffiliateOperatorModel implements FsmModel
     public void AllRoundTesting() {
 //
         final AllRoundTester tester = new AllRoundTester(new AffiliateOperatorModel());
-        tester.setLoopTolerance(10000);
+        tester.setLoopTolerance(2000);
 
- //       tester.setRandom(new Random()); //Allows for a random path each time the model is run.
+
+        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
         tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
 
 //        tester.addListener(new VerboseListener()); //original Place
         tester.addListener(new StopOnFailureListener()); //This listener forces the test class to stop running as soon as a failure is encountered in the model.
         tester.addListener("verbose"); //This gives you printed statements of the transitions being performed along with the source and destination states.
-//
+
         tester.addCoverageMetric(new TransitionPairCoverage()); //Records the transition pair coverage i.e. the number of paired transitions traversed during the execution of the test.
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
-//
+
         tester.generate(8000); //Generates 500 transitions
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
