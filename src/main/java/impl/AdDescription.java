@@ -3,6 +3,7 @@ package impl;
 import com.sun.org.apache.xpath.internal.compiler.Keywords;
 import enums.DimensionType;
 import enums.MediaType;
+import globalDesc.Global;
 
 import java.awt.*;
 import java.util.List;
@@ -51,6 +52,4 @@ public class AdDescription
     public String toString(){
         return this.getMediaType().toString() + " - " + this.getDimension().toString() + " - " + this.getKeywords().toString();
     }
-
-
 }

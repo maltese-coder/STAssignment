@@ -1,12 +1,19 @@
 import enums.AffiliateType;
 
+import enums.DimensionType;
+import enums.MediaType;
+import globalDesc.Global;
+import impl.AdDescription;
 import impl.AdPlatform;
+import impl.Advert;
 import impl.Affiliate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 /**
@@ -204,5 +211,64 @@ public class unitTests
         adPlatform.adClicked(affiliate.getId());
 
         assertEquals(AffiliateType.GOLD,affiliate.getType());
+    }
+
+    @Test
+    public void testAdvertReturned(){
+        AdPlatform adPlatformWithProviders = new AdPlatform(50,1000);
+
+        AdDescription adDescription =  new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
+
+        Advert advert = null;
+
+        advert = adPlatformWithProviders.serveAdvert(adDescription);
+
+        assertNotNull(advert);
+    }
+
+    @Test
+    public void testAdvertReturnedMediaType(){
+        AdPlatform adPlatformWithProviders = new AdPlatform(50,1000);
+
+        AdDescription adDescription =  new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
+
+        Advert advert =  adPlatformWithProviders.serveAdvert(adDescription);
+
+        assertEquals(adDescription.getMediaType(), advert.getAdFormat().getMediaType());
+    }
+
+    @Test
+    public void testAdvertReturnedDimensionType(){
+        AdPlatform adPlatformWithProviders = new AdPlatform(50,1000);
+
+        AdDescription adDescription =  new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
+
+        Advert advert =  adPlatformWithProviders.serveAdvert(adDescription);
+
+        assertEquals(adDescription.getDimension(),advert.getAdFormat().getDimension());
+    }
+
+    @Test
+    public void testTwoKeywordMatches(){
+        AdPlatform adPlatformWithProviders = new AdPlatform(50,1000);
+
+        AdDescription adDescription =  new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));
+
+        Advert advert =  adPlatformWithProviders.serveAdvert(adDescription);
+
+        int check = 0;
+        boolean flag = false;
+
+        for(int i = 0; i < adDescription.getKeywords().size(); i++){
+            if(advert.getAdFormat().getKeywords().contains(adDescription.getKeywords().get(i))){
+                check++;
+            }
+        }
+
+        if(check >= 2){
+            flag = true;
+        }
+
+        assertTrue(flag);
     }
 }

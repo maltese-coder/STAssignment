@@ -28,7 +28,7 @@ public class AffiliateThread extends Thread {
         long startTime = System.currentTimeMillis();
 
         //System.out.println(affiliate.requestAdvert(adPlatform, adDescription).toString());
-        affiliate.requestAdvert(adPlatform, adDescription);
+        Advert a = affiliate.requestAdvert(adPlatform, adDescription);
         //Stop running time
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
@@ -45,7 +45,7 @@ public class AffiliateThread extends Thread {
         if(probability == 1)
             adPlatform.adClicked(affiliate.getId());
 
-        listener.threadClose(this);
+        //listener.threadClose(a);
     }
 
     public int getCount() {

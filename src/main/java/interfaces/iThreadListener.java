@@ -1,5 +1,6 @@
 package interfaces;
 
+import impl.Advert;
 import impl.AffiliateThread;
 
 /**
@@ -9,5 +10,5 @@ public interface iThreadListener {
 
     void setFalse();
 
-    void threadClose(AffiliateThread at);
+    void threadClose(Advert a);
 }
