@@ -20,7 +20,9 @@ public class AdPlatform implements iAdProvider
     private List<AdProvider> adProvidersList = new ArrayList<AdProvider>();
 
     public AdPlatform()
-    {}
+    {
+
+    }
 
     //Create an AdPlatform with an X amount of providers providing Y different adverts each
     public AdPlatform(int providers, int adverts){
