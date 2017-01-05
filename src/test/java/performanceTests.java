@@ -8,8 +8,8 @@ public class performanceTests {
 
     public static void main(String[] args){
 
-        perfTests pt = new perfTests();
-        pt.runTest();
+        performanceTestingObjectClass ptoc = new performanceTestingObjectClass();
+        ptoc.runTest();
 
 
 //        AdDescription ad = new AdDescription(Global.getRandomKeywords(), Global.randomEnum(DimensionType.class), Global.randomEnum(MediaType.class));

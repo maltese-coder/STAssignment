@@ -7,12 +7,13 @@ import interfaces.iThreadListener;
 /**
  * Created by matt on 02/01/2017.
  */
-public class AffiliateThread implements Runnable {
+public class AffiliateThread extends Thread {
 
     private Thread thread;
     private AdPlatform adPlatform;
     private Affiliate affiliate;
     private AdDescription adDescription;
+
     private int count;
 
     public AffiliateThread(Affiliate affiliate, AdPlatform adPlatform, AdDescription adDescription, int count){
@@ -43,6 +44,12 @@ public class AffiliateThread implements Runnable {
         int probability = Global.randInt(1,10);
         if(probability == 1)
             adPlatform.adClicked(affiliate.getId());
+
+        listener.threadClose(this);
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public void start(){
