@@ -107,7 +107,7 @@ public class StepDefinitions {
         sBuild.append(".");
         sBuild.append(arg2);
 
-        assertEquals(sBuild.toString(),webAppObject.getElementText("span.balanceText")); //driver.findElement(By.cssSelector("span.balanceText")));
+        assertEquals(sBuild.toString(),webAppObject.getElementText("span.balanceText"));
     }
 
     @Then("^I should see a message indicating success$")

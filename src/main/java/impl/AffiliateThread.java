@@ -10,10 +10,10 @@ import interfaces.iThreadListener;
 public class AffiliateThread extends Thread {
 
     private Thread thread;
+
     private AdPlatform adPlatform;
     private Affiliate affiliate;
     private AdDescription adDescription;
-
     private int count;
 
     public AffiliateThread(Affiliate affiliate, AdPlatform adPlatform, AdDescription adDescription, int count){
@@ -27,11 +27,12 @@ public class AffiliateThread extends Thread {
         //Start running time
         long startTime = System.currentTimeMillis();
 
-        //System.out.println(affiliate.requestAdvert(adPlatform, adDescription).toString());
         Advert a = affiliate.requestAdvert(adPlatform, adDescription);
+
         //Stop running time
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
+
         System.out.println("Time elapsed for affiliate " + affiliate.getId() + " in thread " + this.count + " : " + elapsedTime);
 
         //Since an affiliate requests an average of 2.5adverts/sec means that a single ad must be sent every 0.4seconds

@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
         monochrome = true,
         format = {"html:target/cucumber-html-report"},
         features = {"src/test/resources/features"}
-       // glue = "Cucumber"
 )
 
 public class RunCucumberTests {

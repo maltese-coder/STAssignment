@@ -21,7 +21,6 @@ public class AdPlatform implements iAdProvider
 
     public AdPlatform()
     {
-
     }
 
     //Create an AdPlatform with an X amount of providers providing Y different adverts each
@@ -48,10 +47,12 @@ public class AdPlatform implements iAdProvider
         return affiliatesMap.size();
     }
 
+    //Settle Balance of an affiliate
     public double settleAffiliateBalance(Affiliate affiliate)
     {
         if ((affiliate.getBalance() < 5))
         {
+            //Affiliate has less than the minimum required amount
             return -1;
         }
 
@@ -63,6 +64,7 @@ public class AdPlatform implements iAdProvider
         return payment;
     }
 
+    //Get commission to be paid to the platform based on the status of the Affiliate
     public double getCommission(Affiliate affiliate)
     {
         AffiliateType tempType = affiliate.getType();
@@ -88,11 +90,15 @@ public class AdPlatform implements iAdProvider
     {
         //This will contain a random advert from each Ad Provider that satisfies the adDescription
         List<Advert> adverts = new ArrayList<Advert>();
+        Advert tempAdvert;
+
 
         //For every ad provider signed up with the system, get a random ad from each that satisfies the description
         // from the affiliate and add it to the temporary list of "adverts"
         for(AdProvider ap : adProvidersList){
-            adverts.add(ap.serveAdvert(adDescription));
+           tempAdvert = ap.serveAdvert(adDescription);
+           if(tempAdvert!= null)
+                adverts.add(tempAdvert);
         }
 
         //Return a random ad from the previously made list
@@ -112,7 +118,7 @@ public class AdPlatform implements iAdProvider
         affiliate.setBalance(affiliate.getBalance()+ 0.5);
         affiliate.setCumulativeTotal(affiliate.getCumulativeTotal() +0.5);
 
-        boolean check = checkPromotion(affiliate);
+        checkPromotion(affiliate);
     }
 
     public boolean checkPromotion(Affiliate affiliate)

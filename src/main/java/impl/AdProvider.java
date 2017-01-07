@@ -14,10 +14,8 @@ import java.util.ArrayList;
  */
 public class AdProvider implements iAdProvider {
 
-    private     SecureRandom random     = new SecureRandom();
-
-    public      ArrayList adverts       = new ArrayList();
-    private     ArrayList mAdverts      = new ArrayList();
+    //List of adverts stored by a provider
+    public ArrayList adverts = new ArrayList();
 
     //Generate a "maxAdverts" amount of different adverts
     public AdProvider(int maxAdverts){
@@ -34,6 +32,9 @@ public class AdProvider implements iAdProvider {
     }
 
     public Advert serveAdvert(AdDescription adDescription) {
+        //list of matching adverts
+        ArrayList mAdverts = new ArrayList();
+
         //for every advert item in Array List "adverts"
         for(Object o : adverts){
             Advert a = (Advert)o;
@@ -80,6 +81,8 @@ public class AdProvider implements iAdProvider {
     }
 
     public String generateRandomURL() {
+        SecureRandom random = new SecureRandom();
+
         return new BigInteger(64, random).toString(32);
     }
 }

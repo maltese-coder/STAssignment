@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class performanceTestingObjectClass implements iThreadListener {
 
-    AdPlatform adPlatform = new AdPlatform(100,1000);
+    AdPlatform adPlatform = new AdPlatform(700,1000);
 
     ArrayList<AffiliateThread> threads = new ArrayList<AffiliateThread>();
 
@@ -27,7 +27,6 @@ public class performanceTestingObjectClass implements iThreadListener {
 
     boolean check = true;
     int counter = 1;
-//    int threadNumber = 0;
 
     public void runTest() {
         while(check) {
@@ -59,8 +58,12 @@ public class performanceTestingObjectClass implements iThreadListener {
             }
 
             todo.clear();
-            counter++;
+            if(check)
+                counter++;
         }
+        System.out.println("\n\nAFFILIATES REACHED: "+ (counter-1));
+
+
     }
 
     public void setFalse(){

@@ -11,15 +11,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 /**
  * Created by matt on 21/11/2016.
  */
-public class unitTests
+public class RunUnitTests
 {
     private AdPlatform adPlatform;
 
@@ -211,6 +209,19 @@ public class unitTests
         adPlatform.adClicked(affiliate.getId());
 
         assertEquals(AffiliateType.GOLD,affiliate.getType());
+    }
+
+    @Test
+    public void testNoAdvertReturned(){
+        //Setup
+        AdPlatform adPlatformWithProviders = new AdPlatform(5,10);
+        AdDescription adDescription = Mockito.mock(AdDescription.class);
+
+        //Exercise
+        Advert advert = adPlatformWithProviders.serveAdvert(adDescription);
+
+        //Verify
+        assertNull(advert);
     }
 
     @Test

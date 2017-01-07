@@ -49,7 +49,6 @@ public class AffiliateOperatorModel implements FsmModel
             tempAffiliate = null;
         }
 
-        //TODO: Outside or inside ??
         //reset test model
         bronze = false;
         silver = false;
@@ -72,11 +71,7 @@ public class AffiliateOperatorModel implements FsmModel
 
         bronze = true;
 
-        // org.junit.Assert.assertEquals("The SUT's balance does not match the balance of the model after withdrawing commision not yet collected", 0, systemUnderTest.getCurrentBalance());
-        //org.junit.Assert.assertEquals(0,systemUnderTest.getCurrentBalance(),0.001);
-
         org.junit.Assert.assertEquals("The SUT's state does not match the affiliate model after signing up and going to BRONZE", bronze, tempAffiliate.getType() == AffiliateType.BRONZE);
-
     }
 
     public boolean settleBalanceGuard(){return (checkWithdraw() && (getState() == AffiliateOperatorStates.BRONZE ||
@@ -87,7 +82,6 @@ public class AffiliateOperatorModel implements FsmModel
 
         CurrentBalance = 0;
 
-       // org.junit.Assert.assertEquals("The SUT's balance does not match the balance of the model after withdrawing commision not yet collected", 0, systemUnderTest.getCurrentBalance());
         org.junit.Assert.assertEquals(0,tempAffiliate.getBalance(),0.001);
     }
 
@@ -165,7 +159,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
-        tester.generate(2000); //Generates 500 transitions
+        tester.generate(2000); //Generates transitions
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
 
@@ -190,7 +184,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
-        tester.generate(2000); //Generates 500 transitions
+        tester.generate(2000); //Generates transitions
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
 
@@ -203,8 +197,8 @@ public class AffiliateOperatorModel implements FsmModel
         tester.setNewActionValue(50);
         tester.setNewTransValue(100);
 
-//        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
-        //tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
+        tester.setRandom(new Random()); //Allows for a random path each time the model is run.
+        tester.buildGraph(); //Builds a model of our FSM to ensure that the coverage metrics are correct.
 
         tester.addListener(new VerboseListener()); //This listener forces the test class to stop running as soon as a failure is encountered in the model.
         tester.addListener(new StopOnFailureListener());
@@ -214,7 +208,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
-        tester.generate(7); //Generates 500 transitions
+        tester.generate(7); //Generates transitions
 
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
@@ -237,7 +231,7 @@ public class AffiliateOperatorModel implements FsmModel
         tester.addCoverageMetric(new StateCoverage()); //Records the state coverage i.e. the number of states which have been visited during the execution of the test.
         tester.addCoverageMetric(new ActionCoverage()); //Records the number of @Action methods which have ben executed during the execution of the test.
 
-        tester.generate(8000); //Generates 500 transitions
+        tester.generate(8000); //Generates transitions
         tester.printCoverage(); //Prints the coverage metrics specified above.
     }
 }
